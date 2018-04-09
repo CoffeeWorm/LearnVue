@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>v-on</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div id="app">
+    <h1>v-on绑定事件</h1><p style="font-size: 12px;text-indent:5em">打开dev tools查看事件输出</p>
+    <p>利用@绑定事件</p>
+    <button @click='click' @mouseenter='enter' @mouseout="out">btn1</button>
+    <br>
+    <p>利用v-on="{}"绑定多个事件</p>
+    <button v-on="{click:click,mouseenter:enter,mouseout:out}">btn2</button>
+    <br>
+    <p>利用$event传入事件</p>
+    <button v-on:click="click($event)">btn3</button>
+    <br>
+    <p>prevent修饰符取消默认事件</p>
+    <button v-on:click.prevent="click">btn4</button>
+    <br>
+    <p>stop修饰符停止冒泡</p>
+    <button v-on:click.stop="click">btn5</button>
+    <br>
+    <p>在输入事件中利用enter修饰符捕获回车的输入并取消其输入</p>
+    <textarea name="" type="text" v-on:keypress.enter.prevent="keyup"></textarea>
+    <br>
+    <textarea name="" type="text" v-on:keypress.enter.prevent="keyup"></textarea>
+    <br>
+    <textarea name="" type="text" @keypress.enter.prevent="keyup"></textarea>
+    <br>
+    <p>P.S.虽说需要$event传入事件对象，但在实际使用中发现只要methods中的方法含有首个形参，即可得到相应的事件对象</p>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+
+    },
+    methods: {
+      click: function(e) {
+        console.log(e, "Hello World!");
+      },
+      enter: function(e) {
+        console.log(e, 'enter');
+      },
+      out: function(e) {
+        console.log(e, 'out');
+      },
+      keyup: function(e) {
+        // e.preventDefault();
+        e.stopPropagation();
+        console.log('Key Up', e);
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

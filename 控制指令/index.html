@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>v-if,v-else,v-else-if</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    section {
+      border-bottom: 1px solid;
+    }
+    #app{
+      width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>控制指令/条件渲染</h1>
+    <label>v-if<input type="radio" v-model="value" value="0"></label>
+    <label>v-if,v-else<input type="radio" v-model="value" value="1"></label>
+    <label>v-if,v-else,v-else-if<input type="radio" v-model="value" value="2"></label>
+    <section>
+      <h3>v-if使用</h3>
+      <p v-if="value=='0'">使用： {{arr[value]}}</p>
+      <p v-if="value!='0'">没有使用： {{arr[0]}}</p>
+    </section>
+    <section>
+      <h3>v-if,v-else使用</h3>
+      <p v-if="value=='1'">使用： {{arr[value]}}</p>
+      <p v-else="value!='1'">没使用： {{arr[value]}}</p>
+    </section>
+    <section>
+      <h3>v-if,v-else,v-else-if使用</h3>
+      <p v-if="value=='0'">使用： {{arr[value]}}</p>
+      <p v-else-if="value0='1'">使用： {{arr[value]}}</p>
+      <p v-else="value0='2'">使用： {{arr[value]}}</p>
+    </section>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    var app = new Vue({
+      el:'#app',
+      data:{
+        value:null,
+        arr:['v-if','v-if,v-else','v-if,v-else,v-else-if']
+      }
+    });
+  </script>
+</body>
+
+</html>
